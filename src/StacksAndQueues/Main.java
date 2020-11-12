@@ -2,13 +2,25 @@ package StacksAndQueues;
 
 import StacksAndQueues.algorithms.ArrayOfThreeStacks;
 import StacksAndQueues.algorithms.ArrayStack;
+import StacksAndQueues.algorithms.MinimumValue;
 
 public class Main {
 
     public static void main(String[] args){
 //        demoArrayStack();
 
-        demoArrayOfThreeStacks();
+//        demoArrayOfThreeStacks();
+
+        minimumAtTop();
+    }
+
+    private static void minimumAtTop() {
+        MinimumValue minimumValue = new MinimumValue(4);
+        minimumValue.push(123);
+        minimumValue.push(426);
+        minimumValue.push(678);
+        minimumValue.push(1000);
+        System.out.println("The minimum value is: " + minimumValue.min());
     }
 
     private static void demoArrayOfThreeStacks() {

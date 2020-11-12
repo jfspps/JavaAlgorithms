@@ -33,7 +33,7 @@ public class ArrayStack<T> {
             System.out.println("Stack is empty");
             return null;
         }
-        return stackArray[topIndex];
+        return stackArray[topIndex--];
     }
 
     public T peek(){
