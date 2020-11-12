@@ -6,8 +6,8 @@ public class ArrayStack<T> {
     // Java would use boxed types (Integer, String, Character)
     // approach by storing items in an array, where the top item/node is updated after each method
 
-    private int stackSize;
-    private T[] stackArray;
+    private final int stackSize;
+    private final T[] stackArray;
     private int topIndex;
 
     public ArrayStack(int stackSize){
@@ -33,9 +33,7 @@ public class ArrayStack<T> {
             System.out.println("Stack is empty");
             return null;
         }
-        T temp = stackArray[topIndex];
-        stackArray[topIndex--] = null;
-        return temp;
+        return stackArray[topIndex];
     }
 
     public T peek(){
