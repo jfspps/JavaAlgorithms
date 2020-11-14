@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
 public class Stack<T> {
 
     // when instantiating a Stack, the respective nodes are private and accessible/viewed via pop(), push(), peek() and isEmpty()
-    // note that the Stack and Queue are implemented here as linked lists to allow for dynamic allocation (arrays may be used)
+    // note that the Stack and Queue are implemented here as linked lists to allow for dynamic allocation (arrays may also be used; see ArrayStack)
     private static class StackNode<T> {
         private T data;
         private StackNode<T> next;

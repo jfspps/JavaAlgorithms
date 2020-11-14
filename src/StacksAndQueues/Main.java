@@ -1,9 +1,6 @@
 package StacksAndQueues;
 
-import StacksAndQueues.algorithms.ArrayOfThreeStacks;
-import StacksAndQueues.algorithms.ArrayStack;
-import StacksAndQueues.algorithms.MinimumValue;
-import StacksAndQueues.algorithms.SetOfStacks;
+import StacksAndQueues.algorithms.*;
 
 public class Main {
 
@@ -14,7 +11,24 @@ public class Main {
 
 //        minimumAtTop();
 
-        setOfStacks();
+//        setOfStacks();
+
+        myQueue();
+    }
+
+    private static void myQueue() {
+        MyQueue<Integer> myQueue = new MyQueue<>();
+        System.out.println("Current queue top (null): " + myQueue.peek());
+        myQueue.enqueue(123);
+        myQueue.enqueue(456);
+        System.out.println("Current queue top (123): " + myQueue.peek());
+        myQueue.dequeue();
+        System.out.println("Current queue top (456): " + myQueue.peek());
+        myQueue.enqueue(789);
+        System.out.println("Current queue top (456): " + myQueue.peek());
+        myQueue.dequeue();
+        myQueue.dequeue();
+        System.out.println("Current queue top (null): " + myQueue.peek());
     }
 
     private static void setOfStacks() {

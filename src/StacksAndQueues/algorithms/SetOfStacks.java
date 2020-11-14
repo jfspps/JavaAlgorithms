@@ -26,6 +26,7 @@ public class SetOfStacks<T> {
         }
 
         // this is the only method which can instantiate more ArrayStacks; returns reference to stack where top resides
+        // time complexity of push() is constant O(1)
         public ArrayStack<T> push(T data){
             if (currentStackIsFull()){
                 // build a new stack or recycle previous stacks
@@ -56,6 +57,7 @@ public class SetOfStacks<T> {
             return this.topIndex < 0;
         }
 
+        // time complexity of pop() is O(m) where m is the number of stacks built by push()
         public T pop(){
             if (currentStackIsEmpty()){
                 numberOfStacks--;
@@ -71,6 +73,7 @@ public class SetOfStacks<T> {
             return this.array[this.topIndex--];
         }
 
+        // time complexity of popAt() is, like pop(), is O(m)
         public T popAt(int stackNo){
             if (stackNo > this.stackID){
                 System.out.println("Given stack number is too high");
@@ -91,6 +94,7 @@ public class SetOfStacks<T> {
             return this.array[this.topIndex--];
         }
 
+        // time complexity of peek(), like pop(), O(m)
         public T peek(){
             if (!this.isEmpty()){
                 return this.array[topIndex];
@@ -116,6 +120,9 @@ public class SetOfStacks<T> {
     public SetOfStacks(int stackSize) {
         arrayStack = new ArrayStack<>(stackSize);
     }
+
+    // all methods below call ArrayStack methods once; hence, time complexities of SetOfStacks methods
+    // are the same as that of ArrayStack methods
 
     public void push(T data){
         // ArrayStack handles whether stack is full or not, while keeping currentStack pointer updated
