@@ -22,6 +22,7 @@ public class Main {
         myQueue.enqueue(123);
         myQueue.enqueue(456);
         System.out.println("Current queue top (123): " + myQueue.peek());
+        System.out.println("Queue is empty: " + myQueue.isEmpty());
         myQueue.dequeue();
         System.out.println("Current queue top (456): " + myQueue.peek());
         myQueue.enqueue(789);
@@ -29,6 +30,7 @@ public class Main {
         myQueue.dequeue();
         myQueue.dequeue();
         System.out.println("Current queue top (null): " + myQueue.peek());
+        System.out.println("Queue is empty: " + myQueue.isEmpty());
     }
 
     private static void setOfStacks() {
