@@ -14,6 +14,7 @@ public class SmallestInteger {
 
     // when pushing, one compares the topmost node with the incoming node
     // if top <= incoming data, then pop top to tempStack and then push incoming data
+    // time complexity is either O(3) or O(1), so just O(1)
     public void push(int data){
         if (!stack.isEmpty()) {
             if (stack.peek() <= data) {
@@ -30,6 +31,7 @@ public class SmallestInteger {
     }
 
     // when popping from stack, check if there are nodes beneath top that are smaller than top
+    // time complexity is O(3n) or just O(n)
     public Integer pop(){
         if (stack.isEmpty() && tempStack.isEmpty()){
             System.out.println("Stack is empty");

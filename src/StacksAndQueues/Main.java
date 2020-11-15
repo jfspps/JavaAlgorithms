@@ -15,7 +15,32 @@ public class Main {
 
 //        myQueue();
 
-        getSmallestInt();
+//        getSmallestInt();
+
+        catsAndDogs();
+    }
+
+    private static void catsAndDogs() {
+        DogsAndCats dogsAndCats = new DogsAndCats();
+        dogsAndCats.enqueue("Bertie", "dog");
+        dogsAndCats.enqueue("Adam", "dog");
+        dogsAndCats.enqueue("Silver", "cat");
+        dogsAndCats.enqueue("Bonnie", "dog");
+        dogsAndCats.enqueue("Claws", "cat");
+        System.out.println("Dog at the ready (Bertie): " + dogsAndCats.peek("dog"));
+        System.out.println("Cat at the ready (Silver): " + dogsAndCats.peek("cat"));
+        System.out.println("First one out (any animal): " + dogsAndCats.dequeueAny());
+        System.out.println("Second one out (cat): " + dogsAndCats.dequeueCat());
+        System.out.println("Third one out (dog): " + dogsAndCats.dequeueDog());
+        System.out.println("Dog at the ready: " + dogsAndCats.peek("dog"));
+        System.out.println("Cat at the ready: " + dogsAndCats.peek("cat"));
+        System.out.println("Fourth one out (any animal): " + dogsAndCats.dequeueAny());
+        System.out.println("Fifth one out (cat): " + dogsAndCats.dequeueCat());
+        System.out.println("Sixth one out (dog): " + dogsAndCats.dequeueDog());
+        dogsAndCats.enqueue("Ben", "dog");
+        dogsAndCats.enqueue("Hair", "cat");
+        System.out.println("Seventh one out (cat): " + dogsAndCats.dequeueCat());
+        System.out.println("Eighth one out (dog): " + dogsAndCats.dequeueDog());
     }
 
     private static void getSmallestInt() {
