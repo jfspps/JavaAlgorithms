@@ -1,6 +1,6 @@
-package arrayList;
+package ArrayList;
 
-import arrayList.algorithms.*;
+import ArrayList.algorithms.*;
 
 public class Main {
 

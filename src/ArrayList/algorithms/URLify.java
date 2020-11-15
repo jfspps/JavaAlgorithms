@@ -1,6 +1,4 @@
-package arrayList.algorithms;
-
-import java.util.Arrays;
+package ArrayList.algorithms;
 
 public class URLify {
     private final char[] input;

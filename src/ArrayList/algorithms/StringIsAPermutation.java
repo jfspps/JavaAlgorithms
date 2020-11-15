@@ -1,4 +1,4 @@
-package arrayList.algorithms;
+package ArrayList.algorithms;
 
 public class StringIsAPermutation {
     private final String input;

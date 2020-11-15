@@ -1,4 +1,4 @@
-package linkedList.algorithms;
+package LinkedList.algorithms;
 
 public class Node<T> {
     Node<T> next = null;   //reference to the next Node

@@ -1,4 +1,4 @@
-package arrayList.algorithms;
+package ArrayList.algorithms;
 
 public class DynArray<T> {
 	private int maxLength;

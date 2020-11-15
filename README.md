@@ -2,6 +2,7 @@
 
 This repo is a collection of algorithms implemented in Java
 
-+ ![Arrays and Strings](/src/arrayList/AlgorithmList.md)
-+ ![Linked lists](/src/linkedList/AlgorithmList.md)
-+ ![Stacks and queues](src/StacksAndQueues/AlgorithmList.md)
++ [Arrays and Strings](/src/ArrayList/AlgorithmList.md)
++ [Linked lists](/src/LinkedList/AlgorithmList.md)
++ [Stacks and queues](/src/StacksAndQueues/AlgorithmList.md)
++ [Trees and Graphs](/src/TreesAndGraphs/AlgorithmList.md)

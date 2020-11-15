@@ -1,4 +1,4 @@
-package linkedList.algorithms;
+package LinkedList.algorithms;
 
 public class ReverseList<T> {
 

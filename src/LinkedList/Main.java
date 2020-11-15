@@ -1,6 +1,6 @@
-package linkedList;
+package LinkedList;
 
-import linkedList.algorithms.*;
+import LinkedList.algorithms.*;
 
 public class Main {
 

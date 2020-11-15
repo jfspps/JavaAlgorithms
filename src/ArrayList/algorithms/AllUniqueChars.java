@@ -1,4 +1,4 @@
-package arrayList.algorithms;
+package ArrayList.algorithms;
 
 public class AllUniqueChars {
     private final String input;

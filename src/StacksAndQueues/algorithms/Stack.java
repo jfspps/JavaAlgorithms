@@ -1,7 +1,5 @@
 package StacksAndQueues.algorithms;
 
-import linkedList.algorithms.Palindrome;
-
 import java.util.EmptyStackException;
 
 public class Stack<T> {
