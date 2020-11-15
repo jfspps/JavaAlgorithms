@@ -13,7 +13,26 @@ public class Main {
 
 //        setOfStacks();
 
-        myQueue();
+//        myQueue();
+
+        getSmallestInt();
+    }
+
+    private static void getSmallestInt() {
+        SmallestInteger smallestInteger = new SmallestInteger();
+        smallestInteger.push(5);
+        System.out.println("Current top (5) is: " + smallestInteger.peek());
+        smallestInteger.push(3);
+        System.out.println("Current top (3) is: " + smallestInteger.peek());
+        smallestInteger.push(4);
+        System.out.println("Current top (still 3) is: " + smallestInteger.peek());
+        System.out.println("Removed: " + smallestInteger.pop());
+        System.out.println("Current top (4) is: " + smallestInteger.peek());
+        System.out.println("Removed: " + smallestInteger.pop());
+        System.out.println("Current top (5) is: " + smallestInteger.peek());
+        System.out.println("Removed: " + smallestInteger.pop());
+        System.out.println("Removed: " + smallestInteger.pop());
+        System.out.println("Stack is empty: " + smallestInteger.isEmpty());
     }
 
     private static void myQueue() {

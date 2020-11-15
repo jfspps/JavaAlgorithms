@@ -6,3 +6,4 @@
 + Implementation of a stack such that [min()](../StacksAndQueues/algorithms/MinimumValue.java), which returns the node with the smallest value, is O(1).
 + Implementation of a set of stacks where pop() and push() process items (nodes) at the most recently build array and popAt() removes items from a specific array, [SetOfStacks](../StacksAndQueues/algorithms/SetOfStacks.java)
 + Implementation of a Queue, using two stacks [MyQueue](../StacksAndQueues/algorithms/MyQueue.java)
++ An algorithm which returns the smallest integer present in a stack, [smallestInteger](../StacksAndQueues/algorithms/smallestInteger.java)
