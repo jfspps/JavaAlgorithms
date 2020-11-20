@@ -1,11 +1,48 @@
 package com.algorithms.TreesAndGraphs;
 
 import com.algorithms.TreesAndGraphs.algorithms.BinaryTree;
+import com.algorithms.TreesAndGraphs.algorithms.SearchableTree;
 
 public class Main {
 
     public static void main(String[] args){
-        binaryTree();
+//        binaryTree();
+
+        demonstrateDepthFirstSearch();
+    }
+
+    private static void demonstrateDepthFirstSearch() {
+        SearchableTree<Character> root = buildSearchableTree();
+
+        root.depthFirstSearch(root);
+    }
+
+
+    private static SearchableTree<Character> buildSearchableTree() {
+        SearchableTree<Character> characterSearchableTreeRoot = new SearchableTree<>('R');
+
+        SearchableTree<Character> characterSearchableTree1 = new SearchableTree<>('A');
+        SearchableTree<Character> characterSearchableTree2 = new SearchableTree<>('B');
+        SearchableTree<Character>[] searchableTrees = new SearchableTree[2];
+        searchableTrees[0] = characterSearchableTree1;
+        searchableTrees[1] = characterSearchableTree2;
+        characterSearchableTreeRoot.setChildren(searchableTrees);
+
+        SearchableTree<Character> characterSearchableTree3 = new SearchableTree<>('a');
+        SearchableTree<Character> characterSearchableTree4 = new SearchableTree<>('b');
+        SearchableTree<Character>[] searchableTreesA = new SearchableTree[2];
+        searchableTreesA[0] = characterSearchableTree3;
+        searchableTreesA[1] = characterSearchableTree4;
+        characterSearchableTree1.setChildren(searchableTreesA);
+
+        SearchableTree<Character> characterSearchableTree5 = new SearchableTree<>('c');
+        SearchableTree<Character> characterSearchableTree6 = new SearchableTree<>('d');
+        SearchableTree<Character>[] searchableTreesB = new SearchableTree[2];
+        searchableTreesB[0] = characterSearchableTree5;
+        searchableTreesB[1] = characterSearchableTree6;
+        characterSearchableTree2.setChildren(searchableTreesB);
+
+        return characterSearchableTreeRoot;
     }
 
     private static void binaryTree() {
