@@ -31,6 +31,14 @@ public class SearchableTree<T> {
         return this.children;
     }
 
+    public boolean hasBeenVisited(){
+        return this.visited;
+    }
+
+    public void setVisited(boolean visited){
+        this.visited = visited;
+    }
+
     // can be reviewed as required
     public void printData(SearchableTree<T> node){
         System.out.println(node.data);
@@ -50,6 +58,7 @@ public class SearchableTree<T> {
 
         if (root.children != null && root.children.length != 0){
             for (SearchableTree<T> tree : root.children){
+                //we must check if visited otherwise for cyclic graphs one would end up in an infinite loop
                 if (!tree.visited){
                     depthFirstSearch(tree);
                 }
@@ -64,12 +73,18 @@ public class SearchableTree<T> {
         root.visited = true;
         neighbouringNodes.enqueue(root);    // FIFO, root handled first
 
+        if (rootsNeighbours == null){
+            System.out.println(root.data);
+            return;
+        }
+
         while (!neighbouringNodes.isEmpty()){
             // initially, this returns root and then adds its siblings to the queue
             // the for loop should not repeat itself for each sibling since the flag node.visited is true
             SearchableTree<T> currentNode = (SearchableTree<T>) neighbouringNodes.dequeue();
             printData(currentNode);
 
+            //we must check if visited otherwise for cyclic graphs one would end up in an infinite loop
             for (SearchableTree<T> node : rootsNeighbours){
                 if (!node.visited){
                     node.visited = true;
@@ -77,5 +92,37 @@ public class SearchableTree<T> {
                 }
             }
         }
+    }
+
+    // modified breadthFirstSearch(), check the node and its siblings to see if they have been visited elsewhere
+    public boolean hasBeenVisitedByOthers(SearchableTree<T> root, SearchableTree<T>[] rootsNeighbours){
+        System.out.println("Processing " + root.data + "...");
+
+        if (root.visited){
+            System.out.println("Someone's been at " + root.data + " before; pathway present");
+            return true;
+        }
+
+        Queue neighbouringNodes = new Queue();
+        root.visited = true;
+        neighbouringNodes.enqueue(root);
+
+        while (rootsNeighbours != null && !neighbouringNodes.isEmpty()){
+            SearchableTree<T> currentNode = (SearchableTree<T>) neighbouringNodes.dequeue();
+            printData(currentNode);
+
+            for (SearchableTree<T> node : rootsNeighbours){
+                if (node.visited){
+                    System.out.println("Someone's been at " + node.data + " before; pathway present");
+                    return true;
+                } else {
+                    node.visited = true;
+                    neighbouringNodes.enqueue(node);
+                }
+            }
+        }
+
+        // by now all nodes have been explored
+        return false;
     }
 }

@@ -3,6 +3,8 @@ package com.algorithms.TreesAndGraphs;
 import com.algorithms.TreesAndGraphs.algorithms.BinaryTree;
 import com.algorithms.TreesAndGraphs.algorithms.SearchableTree;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args){
@@ -10,16 +12,61 @@ public class Main {
 
 //        demonstrateDepthFirstSearch();
 
-        demonstrateBreadthFirstSearch();
+//        demonstrateBreadthFirstSearch();
+
+        findARoute_BFS();
+    }
+
+    private static void findARoute_BFS() {
+        // use breadthFirstSearch to find out if there is a route between two nodes
+        // by checking the visited property
+        SearchableTree<Character>[] graph = buildConnectedGraph();
+        System.out.println("Graph from node M: ");
+        printBFS(graph[3]);
+        for (SearchableTree<Character> node : graph){
+            node.setVisited(false);
+        }
+
+        System.out.println("Cyclic graph from node R: ");
+        printBFS(graph[0]);
+        for (SearchableTree<Character> node : graph){
+            node.setVisited(false);
+        }
+
+        System.out.println("Finding out if there is a path...");
+        SearchableTree<Character> firstNode = graph[0];
+        SearchableTree<Character> secondNode = graph[3];
+
+        lookForPath(firstNode, secondNode);
+    }
+
+    private static void lookForPath(SearchableTree<Character> currentNode1, SearchableTree<Character> currentNode2) {
+        while (!currentNode1.hasBeenVisitedByOthers(currentNode1, currentNode1.getSiblings())
+                && !currentNode2.hasBeenVisitedByOthers(currentNode2, currentNode2.getSiblings())){
+            // advance each node pointer if there are more children
+            // stop advancing when either (i) reached the end of a acyclic graph or (ii) circled a cyclic graph
+
+            if (currentNode1.getChildren() != null){
+                currentNode1 = currentNode1.getChildren()[0];
+            }
+
+            if (currentNode2.getChildren() != null){
+                currentNode2 = currentNode2.getChildren()[0];
+            }
+        }
     }
 
     private static void demonstrateBreadthFirstSearch() {
         SearchableTree<Character> root = buildSearchableTree();
 
+        printBFS(root);
+    }
+
+    private static void printBFS(SearchableTree<Character> root) {
         root.breadthFirstSearch(root, root.getSiblings());
         SearchableTree<Character> currentNode = root;
         while (currentNode != null){
-            if (currentNode.getChildren() != null){
+            if (currentNode.getChildren() != null && !currentNode.getChildren()[0].hasBeenVisited()){
                 root.breadthFirstSearch(currentNode.getChildren()[0], currentNode.getChildren()[0].getSiblings());
                 currentNode = currentNode.getChildren()[0];
             } else
@@ -31,6 +78,46 @@ public class Main {
         SearchableTree<Character> root = buildSearchableTree();
 
         root.depthFirstSearch(root);
+    }
+
+    private static SearchableTree<Character>[] buildConnectedGraph() {
+        // no siblings required; cyclic R, S and T
+        SearchableTree<Character> characterRoot = new SearchableTree<>('R');
+        SearchableTree<Character>[] R_children = new SearchableTree[1];
+
+        SearchableTree<Character> characterS = new SearchableTree<>('S');
+        SearchableTree<Character>[] S_children = new SearchableTree[1];
+        R_children[0] = characterS;
+        characterRoot.setChildren(R_children);
+
+        SearchableTree<Character> characterT = new SearchableTree<>('T');
+        SearchableTree<Character>[] T_children = new SearchableTree[1];
+        S_children[0] = characterT;
+        characterS.setChildren(S_children);
+
+        T_children[0] = characterRoot;
+        characterT.setChildren(T_children);
+
+        // linear graph, joined to 'S', above
+        SearchableTree<Character> characterM = new SearchableTree<>('M');
+        SearchableTree<Character>[] M_children = new SearchableTree[1];
+
+        SearchableTree<Character> characterN = new SearchableTree<>('N');
+        SearchableTree<Character>[] N_children = new SearchableTree[1];
+        M_children[0] = characterN;
+        characterM.setChildren(M_children);
+
+        N_children[0] = characterS;
+        characterN.setChildren(N_children);
+
+        SearchableTree<Character>[] allNodes = new SearchableTree[5];
+        allNodes[0] = characterRoot;
+        allNodes[1] = characterS;
+        allNodes[2] = characterT;
+        allNodes[3] = characterM;
+        allNodes[4] = characterN;
+
+        return allNodes;
     }
 
     private static SearchableTree<Character> buildSearchableTree() {
