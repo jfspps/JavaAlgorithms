@@ -8,6 +8,7 @@ public class SearchableTree<T> {
     private boolean visited;
 
     private SearchableTree<T>[] children;
+    private SearchableTree<T>[] siblings;
 
     public SearchableTree(T data) {
         this.visited = false;
@@ -16,6 +17,14 @@ public class SearchableTree<T> {
 
     public void setChildren(SearchableTree<T>[] children){
         this.children = children;
+    }
+
+    public void setSiblings(SearchableTree<T>[] siblings){
+        this.siblings = siblings;
+    }
+
+    public SearchableTree<T>[] getSiblings(){
+        return  this.siblings;
     }
 
     public SearchableTree<T>[] getChildren(){
@@ -28,6 +37,7 @@ public class SearchableTree<T> {
     }
 
     // traverses a tree following a depth-based approach (visit child nodes before peers)
+    // like BFS, DFS is O(n)
     public void depthFirstSearch(SearchableTree<T> root){
         if (root == null){
             System.out.println("Given node is null");
@@ -48,19 +58,18 @@ public class SearchableTree<T> {
     }
 
     // build a queue of neighbouring nodes using rootsNeighbours and visit them once all are queued
-    // unlike depthFirstSearch(), breadthFirstSearch() would need to be called again for its children
+    // like DFS, BFS is O(n)
     public void breadthFirstSearch(SearchableTree<T> root, SearchableTree<T>[] rootsNeighbours){
         Queue neighbouringNodes = new Queue();
         root.visited = true;
         neighbouringNodes.enqueue(root);    // FIFO, root handled first
 
         while (!neighbouringNodes.isEmpty()){
+            // initially, this returns root and then adds its siblings to the queue
+            // the for loop should not repeat itself for each sibling since the flag node.visited is true
             SearchableTree<T> currentNode = (SearchableTree<T>) neighbouringNodes.dequeue();
             printData(currentNode);
 
-            // with root processed, add its neighbours
-            // the while loop exits once all neighbours are processed
-            // a single call to breadthFirstSearch() is O(n) time, where n = number of neighbours
             for (SearchableTree<T> node : rootsNeighbours){
                 if (!node.visited){
                     node.visited = true;

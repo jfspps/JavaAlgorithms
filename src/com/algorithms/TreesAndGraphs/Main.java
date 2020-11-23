@@ -8,7 +8,23 @@ public class Main {
     public static void main(String[] args){
 //        binaryTree();
 
-        demonstrateDepthFirstSearch();
+//        demonstrateDepthFirstSearch();
+
+        demonstrateBreadthFirstSearch();
+    }
+
+    private static void demonstrateBreadthFirstSearch() {
+        SearchableTree<Character> root = buildSearchableTree();
+
+        root.breadthFirstSearch(root, root.getSiblings());
+        SearchableTree<Character> currentNode = root;
+        while (currentNode != null){
+            if (currentNode.getChildren() != null){
+                root.breadthFirstSearch(currentNode.getChildren()[0], currentNode.getChildren()[0].getSiblings());
+                currentNode = currentNode.getChildren()[0];
+            } else
+                break;
+        }
     }
 
     private static void demonstrateDepthFirstSearch() {
@@ -17,9 +33,10 @@ public class Main {
         root.depthFirstSearch(root);
     }
 
-
     private static SearchableTree<Character> buildSearchableTree() {
         SearchableTree<Character> characterSearchableTreeRoot = new SearchableTree<>('R');
+        SearchableTree<Character>[] levelOne = new SearchableTree[1];
+        setSibling(characterSearchableTreeRoot, levelOne, 0);
 
         SearchableTree<Character> characterSearchableTree1 = new SearchableTree<>('A');
         SearchableTree<Character> characterSearchableTree2 = new SearchableTree<>('B');
@@ -27,6 +44,9 @@ public class Main {
         searchableTrees[0] = characterSearchableTree1;
         searchableTrees[1] = characterSearchableTree2;
         characterSearchableTreeRoot.setChildren(searchableTrees);
+        SearchableTree<Character>[] levelTwo = new SearchableTree[2];
+        setSibling(characterSearchableTree1, levelTwo, 0);
+        setSibling(characterSearchableTree2, levelTwo, 1);
 
         SearchableTree<Character> characterSearchableTree3 = new SearchableTree<>('a');
         SearchableTree<Character> characterSearchableTree4 = new SearchableTree<>('b');
@@ -42,7 +62,18 @@ public class Main {
         searchableTreesB[1] = characterSearchableTree6;
         characterSearchableTree2.setChildren(searchableTreesB);
 
+        SearchableTree<Character>[] levelThree = new SearchableTree[4];
+        setSibling(characterSearchableTree3, levelThree, 0);
+        setSibling(characterSearchableTree4, levelThree, 1);
+        setSibling(characterSearchableTree5, levelThree, 2);
+        setSibling(characterSearchableTree6, levelThree, 3);
+
         return characterSearchableTreeRoot;
+    }
+
+    private static void setSibling(SearchableTree<Character> node, SearchableTree<Character>[] level, int index) {
+        level[index] = node;
+        node.setSiblings(level);
     }
 
     private static void binaryTree() {
