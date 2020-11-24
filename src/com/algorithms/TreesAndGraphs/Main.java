@@ -1,5 +1,6 @@
 package com.algorithms.TreesAndGraphs;
 
+import com.algorithms.TreesAndGraphs.algorithms.BinarySearchTree;
 import com.algorithms.TreesAndGraphs.algorithms.BinaryTree;
 import com.algorithms.TreesAndGraphs.algorithms.SearchableTree;
 
@@ -14,7 +15,30 @@ public class Main {
 
 //        demonstrateBreadthFirstSearch();
 
-        findARoute_BFS();
+//        findARoute_BFS();
+
+        balancedBinarySearchTree();
+    }
+
+    private static void balancedBinarySearchTree() {
+        Integer[] orderedArray = new Integer[8];
+        for (int i = 0; i < orderedArray.length; i++){
+            orderedArray[i] = i;
+        }
+
+        BinarySearchTree tree = new BinarySearchTree(orderedArray[orderedArray.length/2]);
+        System.out.println("Root node:");
+        tree.inOrderTraversal(tree);
+        System.out.println();
+        BinarySearchTree BST = tree.buildBinarySearchTree(orderedArray);
+        System.out.println("Preorder traversal:");
+        BST.preOrderTraversal(BST);
+        System.out.println();
+        System.out.println("Inorder traversal:");
+        BST.inOrderTraversal(BST);
+        System.out.println();
+        System.out.println("Postorder traversal:");
+        BST.postOrderTraversal(BST);
     }
 
     private static void findARoute_BFS() {

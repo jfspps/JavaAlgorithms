@@ -10,6 +10,14 @@ public class BinaryTree<T> {
         this.data = data;
     }
 
+    public void setLeftChild(BinaryTree<T> leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(BinaryTree<T> rightChild) {
+        this.rightChild = rightChild;
+    }
+
     public void inOrderTraversal(BinaryTree<T> tree){
         // reach the bottom of the tree and return the leftChild, then the node, then the right child
         if (tree != null){
