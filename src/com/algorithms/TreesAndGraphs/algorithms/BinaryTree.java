@@ -54,4 +54,16 @@ public class BinaryTree<T> {
         // do something with data (can be overridden if required)
         System.out.print(node.data + " ");
     }
+
+    public T getData(){
+        return this.data;
+    }
+
+    public BinaryTree<T> getLeftChild() {
+        return leftChild;
+    }
+
+    public BinaryTree<T> getRightChild() {
+        return rightChild;
+    }
 }

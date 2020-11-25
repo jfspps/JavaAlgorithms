@@ -2,7 +2,9 @@ package com.algorithms.TreesAndGraphs;
 
 import com.algorithms.TreesAndGraphs.algorithms.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Main {
 
@@ -17,7 +19,30 @@ public class Main {
 
 //        balancedBinarySearchTree();
 
-        buildLinkedListOfLevels();
+//        buildLinkedListOfLevels();
+        binarySearchTreeToListOfList();
+    }
+
+    private static void binarySearchTreeToListOfList() {
+        Integer[] orderedArrayEven = new Integer[8];
+        for (int i = 0; i < orderedArrayEven.length; i++){
+            orderedArrayEven[i] = i;
+        }
+
+        BinarySearchTree tree = new BinarySearchTree(orderedArrayEven[orderedArrayEven.length/2]);
+        BinarySearchTree BST = tree.buildBinarySearchTree(orderedArrayEven);
+
+        ArrayList<LinkedList<BinaryTree<Integer>>> levelList = new ArrayList<>();
+        levelList = BST.createLevelLinkedList(BST, levelList, 0);
+        int level = 0;
+
+        for (LinkedList<BinaryTree<Integer>> list : levelList){
+            System.out.print("Level " + level++ + ": ");
+            for (BinaryTree<Integer> binaryTree : list){
+                System.out.print(binaryTree.getData() + " ");
+            }
+            System.out.println();
+        }
     }
 
     private static void buildLinkedListOfLevels() {

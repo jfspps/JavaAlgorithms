@@ -41,4 +41,12 @@ public class ListOfData<T> {
         }
         System.out.println();
     }
+
+    public ListOfData<T> goToEndOfList(){
+        ListOfData<T> currentNode = this;
+        while (currentNode.next != null){
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
 }

@@ -1,5 +1,8 @@
 package com.algorithms.TreesAndGraphs.algorithms;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class BinarySearchTree extends BinaryTree<Integer> {
 
     public BinarySearchTree(Integer data) {
@@ -42,5 +45,33 @@ public class BinarySearchTree extends BinaryTree<Integer> {
             return parent;
         } else
             return null;
+    }
+
+    // problem is to build a linked list of each level
+    // solution presented here taken from book (there was difficulty with traversing the graph** while keeping track of most recent node)
+    // prior assumption was not knowing the depth of the graph
+
+    // level is zero-based to coincide with ArrayList and signifies which level is being processed
+    // time complexity is O(n), where n = number of nodes + null nodes
+    public ArrayList<LinkedList<BinaryTree<Integer>>> createLevelLinkedList(
+            BinaryTree<Integer> node, ArrayList<LinkedList<BinaryTree<Integer>>> levelList, int level){
+        if (node == null){
+            return null;
+        }
+
+        LinkedList<BinaryTree<Integer>> dataList;
+        // **initially, size() is 0 and level is 0 meaning this level has not been visited before;
+        // it soon changes: size() of 1 and level 0
+        if (levelList.size() == level){
+            dataList = new LinkedList<>();
+            levelList.add(dataList);
+        } else {
+            dataList = levelList.get(level);
+        }
+
+        dataList.add(node);
+        createLevelLinkedList(node.getLeftChild(), levelList, level + 1);
+        createLevelLinkedList(node.getRightChild(), levelList, level + 1);
+        return levelList;
     }
 }
