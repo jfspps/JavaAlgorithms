@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Main {
 
     public static void main(String[] args){
-        binaryTree();
+//        binaryTree();
 
 //        demonstrateDepthFirstSearch();
 
@@ -22,7 +22,7 @@ public class Main {
 //        buildLinkedListOfLevels();
 //        binarySearchTreeToListOfList();
 
-
+        unbalancedBinaryTree();
     }
 
     private static void binarySearchTreeToListOfList() {
@@ -254,6 +254,39 @@ public class Main {
         node.setSiblings(level);
     }
 
+    private static void unbalancedBinaryTree() {
+        BinaryTree<Character> rootNode = new BinaryTree<>('A');
+        BinaryTree<Character> childx = new BinaryTree<>('x');
+        rootNode.setChildren(childx, null);
+
+        BinaryTree<Character> child1 = new BinaryTree<>('1');
+        BinaryTree<Character> child2 = new BinaryTree<>('2');
+        childx.setChildren(child1, child2);
+
+        int maxDepth = rootNode.getMaxDepth(rootNode);
+        int minDepth = rootNode.getShortestDepth(rootNode);
+
+        System.out.println("Max depth: " + maxDepth);
+        System.out.println("Min depth: " + minDepth);
+
+        System.out.println("In-order traversal:");
+        rootNode.inOrderTraversal(rootNode);
+        System.out.println();
+
+        System.out.println("Pre-order traversal:");
+        rootNode.preOrderTraversal(rootNode);
+        System.out.println();
+
+        System.out.println("Post-order traversal:");
+        rootNode.postOrderTraversal(rootNode);
+        System.out.println();
+
+        if (maxDepth - minDepth > 1){
+            System.out.println("Tree is unbalanced");
+        } else
+            System.out.println("Tree is balanced");
+    }
+
     private static void binaryTree() {
         BinaryTree<Character> rootNode = new BinaryTree<>('A');
         BinaryTree<Character> childx = new BinaryTree<>('x');
@@ -269,6 +302,7 @@ public class Main {
         childy.setChildren(child3, child4);
 
         System.out.println("Max depth: " + rootNode.getMaxDepth(rootNode));
+        System.out.println("Min depth: " + rootNode.getShortestDepth(rootNode));
 
         System.out.println("In-order traversal:");
         rootNode.inOrderTraversal(rootNode);

@@ -85,4 +85,21 @@ public class BinaryTree<T> {
         }
         return 0;
     }
+
+    public int getShortestDepth(BinaryTree<T> tree){
+        int leftBranch = 0;
+        int rightBranch = 0;
+
+        if (tree != null){
+            leftBranch = getMaxDepth(tree.leftChild);
+            rightBranch = getMaxDepth(tree.rightChild);
+
+            if (leftBranch < rightBranch){
+                return leftBranch + 1;
+            } else {
+                return rightBranch + 1;
+            }
+        }
+        return 0;
+    }
 }

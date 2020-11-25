@@ -11,3 +11,4 @@ Problems related algorithms:
 + Given a directed graph, show that there is a [route](./algorithms/SearchableTree.java#L98) between two nodes, using a bidirectional search.
 + Given a sorted array of integers (in ascending order of size), build a binary search tree of minimum height, [BST](./algorithms/BinarySearchTree.java)
 + Given a binary search tree, build (and print) a linked lists each of which store the node values at a given level, [ListBST](./algorithms/BinarySearchTree.java#L56)
++ Find the [maxDepth](./algorithms/BinaryTree.java#L72) and [minDepth](./algorithms/BinaryTree.java#L89) of a tree and ascertain if one is balanced or unbalanced, when maxDepth - minDepth > 1.
