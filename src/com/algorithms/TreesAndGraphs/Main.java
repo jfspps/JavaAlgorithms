@@ -3,7 +3,6 @@ package com.algorithms.TreesAndGraphs;
 import com.algorithms.TreesAndGraphs.algorithms.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Main {
@@ -22,7 +21,17 @@ public class Main {
 //        buildLinkedListOfLevels();
 //        binarySearchTreeToListOfList();
 
-        unbalancedBinaryTree();
+//        unbalancedBinaryTree();
+
+        isABinarySearchTree();
+    }
+
+    private static void isABinarySearchTree() {
+        BinaryTree<Integer> isBST = manualBST();
+        BinaryTree<Integer> isNotBST = manual_nonBST();
+
+        System.out.println("Should be true: " + isBST.isABinarySearchTree(isBST, new LinkedList<>()));
+        System.out.println("Should be false: " + isNotBST.isABinarySearchTree(isNotBST, new LinkedList<>()));
     }
 
     private static void binarySearchTreeToListOfList() {
@@ -314,5 +323,45 @@ public class Main {
 
         System.out.println("Post-order traversal:");
         rootNode.postOrderTraversal(rootNode);
+    }
+
+    private static BinaryTree<Integer> manualBST() {
+        BinaryTree<Integer> rootNode = new BinaryTree<>(4);
+        BinaryTree<Integer> childx = new BinaryTree<>(2);
+        BinaryTree<Integer> childy = new BinaryTree<>(6);
+        rootNode.setChildren(childx, childy);
+
+        BinaryTree<Integer> child1 = new BinaryTree<>(1);
+        BinaryTree<Integer> child2 = new BinaryTree<>(3);
+        childx.setChildren(child1, child2);
+
+        BinaryTree<Integer> child3 = new BinaryTree<>(5);
+        BinaryTree<Integer> child4 = new BinaryTree<>(7);
+        childy.setChildren(child3, child4);
+
+        System.out.println("In-order traversal:");
+        rootNode.inOrderTraversal(rootNode);
+        System.out.println();
+        return rootNode;
+    }
+
+    private static BinaryTree<Integer> manual_nonBST() {
+        BinaryTree<Integer> rootNode = new BinaryTree<>(4);
+        BinaryTree<Integer> childx = new BinaryTree<>(2);
+        BinaryTree<Integer> childy = new BinaryTree<>(6);
+        rootNode.setChildren(childx, childy);
+
+        BinaryTree<Integer> child1 = new BinaryTree<>(1);
+        BinaryTree<Integer> child2 = new BinaryTree<>(3);
+        childx.setChildren(child1, child2);
+
+        BinaryTree<Integer> child3 = new BinaryTree<>(4);
+        BinaryTree<Integer> child4 = new BinaryTree<>(5);
+        childy.setChildren(child3, child4);
+
+        System.out.println("In-order traversal:");
+        rootNode.inOrderTraversal(rootNode);
+        System.out.println();
+        return rootNode;
     }
 }

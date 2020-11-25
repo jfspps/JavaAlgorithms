@@ -1,5 +1,7 @@
 package com.algorithms.TreesAndGraphs.algorithms;
 
+import java.util.LinkedList;
+
 public class BinaryTree<T> {
 
     private final T data;
@@ -70,8 +72,8 @@ public class BinaryTree<T> {
     }
 
     public int getMaxDepth(BinaryTree<T> tree) {
-        int leftBranch = 0;
-        int rightBranch = 0;
+        int leftBranch;
+        int rightBranch;
 
         if (tree != null){
             leftBranch = getMaxDepth(tree.leftChild);
@@ -87,8 +89,8 @@ public class BinaryTree<T> {
     }
 
     public int getShortestDepth(BinaryTree<T> tree){
-        int leftBranch = 0;
-        int rightBranch = 0;
+        int leftBranch;
+        int rightBranch;
 
         if (tree != null){
             leftBranch = getMaxDepth(tree.leftChild);
@@ -101,5 +103,28 @@ public class BinaryTree<T> {
             }
         }
         return 0;
+    }
+
+    // while not abstract binary trees, a binary search tree must handle comparable data types, in this case integers
+    // and is included here instead of the class, BinarySearchTree, which always builds BSTs
+
+    public boolean isABinarySearchTree(BinaryTree<Integer> tree, LinkedList<Integer> list) {
+        if (tree != null) {
+            isABinarySearchTree(tree.leftChild, list);
+            list.add(tree.data);
+            isABinarySearchTree(tree.rightChild, list);
+        }
+        return checkIfBST(list);
+    }
+
+    // this checks the sequence of nodes from an in-order traversal
+    private boolean checkIfBST(LinkedList<Integer> linkedList) {
+        int size = linkedList.size();
+        for (int i = 0; i < size - 1; i++){
+            if (linkedList.get(i) > linkedList.get(i+1)){
+                return false;
+            }
+        }
+        return true;
     }
 }
