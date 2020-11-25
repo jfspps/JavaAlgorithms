@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Main {
 
     public static void main(String[] args){
-//        binaryTree();
+        binaryTree();
 
 //        demonstrateDepthFirstSearch();
 
@@ -20,7 +20,9 @@ public class Main {
 //        balancedBinarySearchTree();
 
 //        buildLinkedListOfLevels();
-        binarySearchTreeToListOfList();
+//        binarySearchTreeToListOfList();
+
+
     }
 
     private static void binarySearchTreeToListOfList() {
@@ -265,6 +267,8 @@ public class Main {
         BinaryTree<Character> child3 = new BinaryTree<>('3');
         BinaryTree<Character> child4 = new BinaryTree<>('4');
         childy.setChildren(child3, child4);
+
+        System.out.println("Max depth: " + rootNode.getMaxDepth(rootNode));
 
         System.out.println("In-order traversal:");
         rootNode.inOrderTraversal(rootNode);
