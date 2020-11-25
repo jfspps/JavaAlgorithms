@@ -1,8 +1,6 @@
 package com.algorithms.TreesAndGraphs;
 
-import com.algorithms.TreesAndGraphs.algorithms.BinarySearchTree;
-import com.algorithms.TreesAndGraphs.algorithms.BinaryTree;
-import com.algorithms.TreesAndGraphs.algorithms.SearchableTree;
+import com.algorithms.TreesAndGraphs.algorithms.*;
 
 import java.util.Arrays;
 
@@ -17,20 +15,41 @@ public class Main {
 
 //        findARoute_BFS();
 
-        balancedBinarySearchTree();
+//        balancedBinarySearchTree();
+
+        buildLinkedListOfLevels();
+    }
+
+    private static void buildLinkedListOfLevels() {
+        ListOfData<Integer> listOfData = new ListOfData<>(10);
+        LinkedListOfLevels<Integer> linkedListOfLevels = new LinkedListOfLevels<>(listOfData, "test");
+
+        System.out.println(linkedListOfLevels.getLabel());
+        linkedListOfLevels.getHeadDataNode().printDataList();
+
+        linkedListOfLevels.getHeadDataNode().appendDataList(20);
+        linkedListOfLevels.getHeadDataNode().appendDataList(40);
+        linkedListOfLevels.getHeadDataNode().printDataList();
+
+        System.out.println("Next level...");
+        ListOfData<Integer> listOfData2 = new ListOfData<>(88);
+        listOfData2.appendDataList(99);
+        linkedListOfLevels.appendNewLevelList(listOfData2);
+        LinkedListOfLevels<Integer> nextLevelList = linkedListOfLevels.getNextLevelList();
+        nextLevelList.getHeadDataNode().printDataList();
     }
 
     private static void balancedBinarySearchTree() {
-        Integer[] orderedArray = new Integer[8];
-        for (int i = 0; i < orderedArray.length; i++){
-            orderedArray[i] = i;
+        Integer[] orderedArrayEven = new Integer[8];
+        for (int i = 0; i < orderedArrayEven.length; i++){
+            orderedArrayEven[i] = i;
         }
 
-        BinarySearchTree tree = new BinarySearchTree(orderedArray[orderedArray.length/2]);
-        System.out.println("Root node:");
+        BinarySearchTree tree = new BinarySearchTree(orderedArrayEven[orderedArrayEven.length/2]);
+        System.out.println("Even number of elements. Root node:");
         tree.inOrderTraversal(tree);
         System.out.println();
-        BinarySearchTree BST = tree.buildBinarySearchTree(orderedArray);
+        BinarySearchTree BST = tree.buildBinarySearchTree(orderedArrayEven);
         System.out.println("Preorder traversal:");
         BST.preOrderTraversal(BST);
         System.out.println();
@@ -39,6 +58,27 @@ public class Main {
         System.out.println();
         System.out.println("Postorder traversal:");
         BST.postOrderTraversal(BST);
+        System.out.println();
+
+        System.out.println("=====================================");
+        Integer[] orderedArrayOdd = new Integer[9];
+        for (int i = 0; i < orderedArrayOdd.length; i++){
+            orderedArrayOdd[i] = i;
+        }
+
+        BinarySearchTree treeOdd = new BinarySearchTree(orderedArrayOdd[orderedArrayOdd.length/2]);
+        System.out.println("Odd number of elements. Root node:");
+        treeOdd.inOrderTraversal(treeOdd);
+        System.out.println();
+        BinarySearchTree BSTOdd = treeOdd.buildBinarySearchTree(orderedArrayOdd);
+        System.out.println("Preorder traversal:");
+        BSTOdd.preOrderTraversal(BSTOdd);
+        System.out.println();
+        System.out.println("Inorder traversal:");
+        BSTOdd.inOrderTraversal(BSTOdd);
+        System.out.println();
+        System.out.println("Postorder traversal:");
+        BSTOdd.postOrderTraversal(BSTOdd);
     }
 
     private static void findARoute_BFS() {
