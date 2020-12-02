@@ -88,12 +88,40 @@ public class BinarySearchTree extends BinaryTree<Integer> {
             return parent;
         }
 
-        BinarySearchTree tree;
         if (data < parent.getData()){
-            tree = getNode((BinarySearchTree) parent.getLeftChild(), data);
+            return getNode((BinarySearchTree) parent.getLeftChild(), data);
         } else
-            tree = getNode((BinarySearchTree) parent.getRightChild(), data);
+            return getNode((BinarySearchTree) parent.getRightChild(), data);
+    }
 
-        return tree;
+    public BinarySearchTree getNextInOrder(BinarySearchTree node) {
+        // if a parent with a right-child
+        if (node.getRightChild() != null) {
+            BinarySearchTree tree = (BinarySearchTree) node.getRightChild();
+            while (tree.getLeftChild() != null) {
+                tree = (BinarySearchTree) tree.getLeftChild();
+            }
+            return tree;
+        } else if (node.getParent() != null) {
+            // leaf nodes next...
+            BinarySearchTree parent = (BinarySearchTree) node.getParent();
+
+            // if at right-child leaf
+            if (parent.getRightChild() == node && parent.getParent() != null) {
+                // check if parent is left child of grandparent
+                if (parent.getParent().getLeftChild() == parent){
+                    return (BinarySearchTree) parent.getParent();
+                } else {
+                    // currently on rightmost subtree
+                    return null;
+                }
+            }
+
+            // if a left-child leaf
+            if (parent.getLeftChild() == node) {
+                return parent;
+            }
+        }
+        return null;
     }
 }

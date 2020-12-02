@@ -7,6 +7,7 @@ public class BinaryTree<T> {
     private final T data;
     private BinaryTree<T> leftChild;
     private BinaryTree<T> rightChild;
+    private BinaryTree<T> parent;
     private boolean visited;
 
     public BinaryTree(T data) {
@@ -15,11 +16,17 @@ public class BinaryTree<T> {
     }
 
     public void setLeftChild(BinaryTree<T> leftChild) {
-        this.leftChild = leftChild;
+        if (leftChild != null){
+            this.leftChild = leftChild;
+            leftChild.parent = this;
+        }
     }
 
     public void setRightChild(BinaryTree<T> rightChild) {
-        this.rightChild = rightChild;
+        if (rightChild != null){
+            this.rightChild = rightChild;
+            rightChild.parent = this;
+        }
     }
 
     public void inOrderTraversal(BinaryTree<T> tree) {
@@ -32,8 +39,14 @@ public class BinaryTree<T> {
     }
 
     public void setChildren(BinaryTree<T> lChild, BinaryTree<T> rChild) {
-        this.leftChild = lChild;
-        this.rightChild = rChild;
+        if (lChild != null){
+            this.leftChild = lChild;
+            lChild.parent = this;
+        }
+        if (rChild != null){
+            this.rightChild = rChild;
+            rChild.parent = this;
+        }
     }
 
     public void preOrderTraversal(BinaryTree<T> tree) {
@@ -69,6 +82,11 @@ public class BinaryTree<T> {
 
     public BinaryTree<T> getRightChild() {
         return rightChild;
+    }
+
+
+    public BinaryTree<T> getParent(){
+        return this.parent;
     }
 
     public int getMaxDepth(BinaryTree<T> tree) {

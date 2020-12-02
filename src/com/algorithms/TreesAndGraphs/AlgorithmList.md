@@ -13,3 +13,5 @@ Problems related algorithms:
 + Given a binary search tree, build (and print) a linked lists each of which store the node values at a given level, [ListBST](./algorithms/BinarySearchTree.java#L56)
 + Find the [maxDepth](./algorithms/BinaryTree.java#L72) and [minDepth](./algorithms/BinaryTree.java#L89) of a tree and ascertain if one is balanced or unbalanced, when maxDepth - minDepth > 1.
 + Check to see if a binary tree is a binary search tree (where the nodes of an in-order traversal are always increasing), [isABinarySearchTree](./algorithms/BinaryTree.java#L111)
++ Retrieve a BST based on value (return null if not), [getNode](./algorithms/BinarySearchTree.java#L82)
++ Retrieve the next in-order node, [getNextInOrder](./algorithms/BinarySearchTree.java#L97)

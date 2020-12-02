@@ -36,10 +36,30 @@ public class Main {
         BinarySearchTree tree = new BinarySearchTree(orderedArrayEven[orderedArrayEven.length/2]);
         BinarySearchTree BST = tree.buildBinarySearchTree(orderedArrayEven);
 
-        BinarySearchTree found = BST.getNode(BST, 6);
+        BinarySearchTree found = BST.getNode(BST, 4);
 
-        if (found != null){
+        getNodeAndPrintNext(found);
+
+        found = BST.getNode(BST, 1);
+
+        getNodeAndPrintNext(found);
+
+        found = BST.getNode(BST, 3);
+
+        getNodeAndPrintNext(found);
+
+        found = BST.getNode(BST, 7);
+
+        getNodeAndPrintNext(found);
+    }
+
+    private static void getNodeAndPrintNext(BinarySearchTree found) {
+        if (found != null) {
             System.out.println("Found node: " + found.getData());
+            if (found.getNextInOrder(found) != null) {
+                System.out.println("Next in-order node is: " + found.getNextInOrder(found).getData());
+            } else
+                System.out.println("No next in-order node present");
         } else
             System.out.println("Could not find node with given value");
     }
