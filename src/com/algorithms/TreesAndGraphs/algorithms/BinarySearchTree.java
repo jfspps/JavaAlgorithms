@@ -59,13 +59,17 @@ public class BinarySearchTree extends BinaryTree<Integer> {
             return null;
         }
 
+        // dataList stores the node; levelList stores a collection of dataLists for a given level
+        // note that levelList is stored externally of the first call of createLevelLinkedList
+
         LinkedList<BinaryTree<Integer>> dataList;
         // **initially, size() is 0 and level is 0 meaning this level has not been visited before;
-        // it soon changes: size() of 1 and level 0
         if (levelList.size() == level){
             dataList = new LinkedList<>();
             levelList.add(dataList);
         } else {
+            // for the right-child, levelList.size > level
+            // levelList.size != level so instead dataList will get the list of nodes which already contains left-child
             dataList = levelList.get(level);
         }
 
@@ -73,5 +77,23 @@ public class BinarySearchTree extends BinaryTree<Integer> {
         createLevelLinkedList(node.getLeftChild(), levelList, level + 1);
         createLevelLinkedList(node.getRightChild(), levelList, level + 1);
         return levelList;
+    }
+
+    public BinarySearchTree getNode(BinarySearchTree parent, Integer data){
+        if (parent == null){
+            return null;
+        }
+
+        if (parent.getData().equals(data)){
+            return parent;
+        }
+
+        BinarySearchTree tree;
+        if (data < parent.getData()){
+            tree = getNode((BinarySearchTree) parent.getLeftChild(), data);
+        } else
+            tree = getNode((BinarySearchTree) parent.getRightChild(), data);
+
+        return tree;
     }
 }

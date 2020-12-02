@@ -23,7 +23,25 @@ public class Main {
 
 //        unbalancedBinaryTree();
 
-        isABinarySearchTree();
+//        isABinarySearchTree();
+        getNodeWithData();
+    }
+
+    private static void getNodeWithData() {
+        Integer[] orderedArrayEven = new Integer[8];
+        for (int i = 0; i < orderedArrayEven.length; i++){
+            orderedArrayEven[i] = i;
+        }
+
+        BinarySearchTree tree = new BinarySearchTree(orderedArrayEven[orderedArrayEven.length/2]);
+        BinarySearchTree BST = tree.buildBinarySearchTree(orderedArrayEven);
+
+        BinarySearchTree found = BST.getNode(BST, 6);
+
+        if (found != null){
+            System.out.println("Found node: " + found.getData());
+        } else
+            System.out.println("Could not find node with given value");
     }
 
     private static void isABinarySearchTree() {
