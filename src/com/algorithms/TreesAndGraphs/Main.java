@@ -2,8 +2,7 @@ package com.algorithms.TreesAndGraphs;
 
 import com.algorithms.TreesAndGraphs.algorithms.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Main {
 
@@ -24,7 +23,37 @@ public class Main {
 //        unbalancedBinaryTree();
 
 //        isABinarySearchTree();
-        getNodeWithData();
+//        getNodeWithData();
+        
+        isBuildable();
+    }
+
+    private static void isBuildable() {
+        Set<Character> allProjects = buildListOfAllProjects();
+        BuildOrder buildOrder = new BuildOrder(buildProjectList(), allProjects);
+        buildOrder.isBuildable();
+    }
+
+    private static Set<Character> buildListOfAllProjects() {
+        Character[] characters = {'a', 'b', 'c', 'd', 'e', 'f'};
+        return new HashSet<>(Arrays.asList(characters));
+    }
+
+    private static List<List<Character>> buildProjectList(){
+        List<List<Character>> lists = new ArrayList<>();
+        Character[] project1 = {'a', 'd'};
+        Character[] project2 = {'f', 'b'};
+        Character[] project3 = {'b', 'd'};
+        Character[] project4 = {'f', 'a'};
+        Character[] project5 = {'d', 'c'};
+
+        lists.add(List.of(project1));
+        lists.add(List.of(project2));
+        lists.add(List.of(project3));
+        lists.add(List.of(project4));
+        lists.add(List.of(project5));
+
+        return lists;
     }
 
     private static void getNodeWithData() {
