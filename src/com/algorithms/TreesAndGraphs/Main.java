@@ -25,7 +25,20 @@ public class Main {
 //        isABinarySearchTree();
 //        getNodeWithData();
         
-        isBuildable();
+//        isBuildable();
+        getBuildOrder();
+    }
+
+    private static void getBuildOrder() {
+        String[][] dependencies = {{"a", "d"}, {"e", "b"}, {"b", "d"}, {"e", "a"}, {"d", "c"}};
+        TopologicalSort sorted = new TopologicalSort();
+
+        TopologicalSort.Node[] nodes = sorted.findBuildOrder(dependencies);
+
+        for (TopologicalSort.Node nodeKey : nodes){
+            System.out.print(nodeKey.getName() + " ");
+        }
+        System.out.println();
     }
 
     private static void isBuildable() {

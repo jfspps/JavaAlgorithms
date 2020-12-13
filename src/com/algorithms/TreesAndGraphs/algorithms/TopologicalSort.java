@@ -69,7 +69,7 @@ public class TopologicalSort {
     }
 
     // build a list of nodes in the buildable order
-    Node[] buildList(ArrayList<Node> nodes){
+    public Node[] buildList(ArrayList<Node> nodes){
         Node[] ordered = new Node[nodes.size()];
 
         // handle nodes with zero dependencies first; nodes with dependencies will start from listOffset
@@ -126,7 +126,7 @@ public class TopologicalSort {
     }
 
     // take a graph with established edges and use it to finally build an ordered array of nodes, in build order
-    Node[] findBuildOrder(String[][] dependencies){
+    public Node[] findBuildOrder(String[][] dependencies){
         Graph graph = buildGraph(dependencies);
         return buildList(graph.getNodes());
     }
