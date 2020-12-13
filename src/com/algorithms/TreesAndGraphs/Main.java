@@ -39,6 +39,15 @@ public class Main {
             System.out.print(nodeKey.getName() + " ");
         }
         System.out.println();
+
+        System.out.println("Another node list....");
+        String[][] dependencies2 = {{"a", "b"}, {"b", "c"}, {"c", "d"}, {"d", "e"}, {"e", "f"}};
+        TopologicalSort.Node[] nodes2 = sorted.findBuildOrder(dependencies2);
+
+        for (TopologicalSort.Node nodeKey : nodes2){
+            System.out.print(nodeKey.getName() + " ");
+        }
+        System.out.println();
     }
 
     private static void isBuildable() {
