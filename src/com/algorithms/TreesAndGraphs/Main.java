@@ -26,7 +26,14 @@ public class Main {
 //        getNodeWithData();
         
 //        isBuildable();
-        getBuildOrder();
+//        getBuildOrder();
+
+        findCommonAncestor();
+    }
+
+    private static void findCommonAncestor() {
+
+
     }
 
     private static void getBuildOrder() {

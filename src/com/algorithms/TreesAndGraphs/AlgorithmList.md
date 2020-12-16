@@ -15,4 +15,5 @@ Problems related algorithms:
 + Check to see if a binary tree is a binary search tree (where the nodes of an in-order traversal are always increasing), [isABinarySearchTree](./algorithms/BinaryTree.java#L111)
 + Retrieve a BST based on value (return null if not), [getNode](./algorithms/BinarySearchTree.java#L82)
 + Retrieve the next in-order node, [getNextInOrder](./algorithms/BinarySearchTree.java#L97)
-+ Deduce if a list of paired projects can be built, [isBuildable](./algorithms/BuildOrder.java#L21)
++ Deduce if a list of paired projects can be built, [isBuildable](./algorithms/BuildOrder.java#L21) and if so in what order, [topologicalSort](./algorithms/TopologicalSort.java)
++ Deduce the closest common ancestor of two nodes, [findParent](./algorithms/FindAncestor.java)
