@@ -16,4 +16,4 @@ Problems related algorithms:
 + Retrieve a BST based on value (return null if not), [getNode](./algorithms/BinarySearchTree.java#L82)
 + Retrieve the next in-order node, [getNextInOrder](./algorithms/BinarySearchTree.java#L97)
 + Deduce if a list of paired projects can be built, [isBuildable](./algorithms/BuildOrder.java#L21) and if so in what order, [topologicalSort](./algorithms/TopologicalSort.java)
-+ Deduce the closest common ancestor of two nodes, [findParent](./algorithms/FindAncestor.java)
++ Deduce the closest common ancestor of two nodes in a binary tree, [findCommonAncestor](./algorithms/FindAncestor.java)

@@ -43,8 +43,13 @@ public class Main {
         FindAncestor.Node dd_Node = ancestor.addConnectedNodes(graph, cNode.getName(), "dd");
 
         ancestor.findAncestorOfBinaryTreeLevelled(bb_Node, cc_Node);
+        ancestor.findAncestorOfBinaryTree(bb_Node, cc_Node);
+        System.out.println("----------------------");
         ancestor.findAncestorOfBinaryTreeLevelled(bNode, cc_Node);
+        ancestor.findAncestorOfBinaryTree(bNode, cc_Node);
+        System.out.println("----------------------");
         ancestor.findAncestorOfBinaryTreeLevelled(dd_Node, cc_Node);
+        ancestor.findAncestorOfBinaryTree(dd_Node, cc_Node);
     }
 
     private static void getBuildOrder() {
