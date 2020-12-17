@@ -7,7 +7,6 @@ public class FindAncestor {
 
     public class Node {
         private Node parent;
-
         private String name;
 
         public Node(String name) {
@@ -31,23 +30,74 @@ public class FindAncestor {
         }
     }
 
-    public class Graph {
+    // build a connected or disconnected graph
+    public class Graph{
         private ArrayList<Node> nodes = new ArrayList<>();
-        private HashMap<String, Node> map = new HashMap<>();
+        private HashMap<String, Node> nodeMap = new HashMap<>();
 
-        public FindAncestor.Node buildOrGetNode(String name){
-            if (!map.containsKey(name)){
-                FindAncestor.Node node = new FindAncestor.Node(name);
-                nodes.add(node);
-                map.put(name, node);
+        public Node getNode(String name){
+            if (name != null) {
+                return nodeMap.get(name);
             }
+            return null;
+        }
 
-            return map.get(name);
+        Node addConnectedNodes(String parentName, String newNode){
+            if (parentName != null && newNode != null){
+
+                // check parent
+                Node parent = getNode(parentName);
+                if (parent == null){
+                    parent = new Node(parentName);
+                    nodeMap.put(parentName, parent);
+                }
+
+                Node node = getNode(newNode);
+                if (node == null){
+                    node = new Node(newNode);
+                    nodeMap.put(newNode, node);
+                }
+
+                node.setParent(parent);
+                return node;
+            }
+            return null;
+        }
+
+        Node addOrGetSingleNode(String nodeName){
+            if (nodeName != null){
+                Node node = getNode(nodeName);
+                if (node == null){
+                    node = new Node(nodeName);
+                    return nodeMap.put(nodeName, node);
+                } else
+                    return node;
+            }
+            return null;
+        }
+
+        public HashMap<String, Node> getNodeMap() {
+            return nodeMap;
         }
     }
 
+    // provide access to graph building and node adding
+    public Graph buildGraph(String nodeName){
+        Graph graph = new Graph();
+
+        if (nodeName != null){
+            graph.addOrGetSingleNode(nodeName);
+        }
+        return graph;
+    }
+
+    public Node addConnectedNodes(Graph graph, String parentNode, String nodeName){
+        return graph.addConnectedNodes(parentNode, nodeName);
+    }
+
+    // the algorithm: find the common ancestor (two approaches provided)
     // this is horrendously O(n^2)
-    public Node findAncestor(Node node1, Node node2){
+    public Node findAncestorOfBinaryTree(Node node1, Node node2){
         if (node1.getParent() == null || node2.getParent() == null){
             System.out.println("Both nodes must have a parent");
             return null;
@@ -76,7 +126,33 @@ public class FindAncestor {
         return null;
     }
 
-    // returns a pair of Nodes at the same level
+    // after establising a level 'playing-field' we compare parents and move up the tree with both nodes at the same time
+    // this is now O(n), n = level number
+    public Node findAncestorOfBinaryTreeLevelled(Node node1, Node node2){
+        if (node1.getParent() == null || node2.getParent() == null){
+            System.out.println("Both nodes must have a parent");
+            return null;
+        }
+
+        Node[] nodes = levelStartingPoint(node1, node2);
+        node1 = nodes[0];
+        node2 = nodes[1];
+
+        while (node1 != node2 && node1.getParent() != null){
+            node1 = node1.getParent();
+            node2 = node2.getParent();
+
+            if (node1 == node2){
+                System.out.println("Found common ancestor: " + node1.getName());
+                return node1;
+            }
+        }
+
+        System.out.println("Could not find common ancestor");
+        return null;
+    }
+
+    // returns a pair of Nodes at the same level (helper to findAncestorOfBinaryTreeLevelled())
     // this is O(n + m + n - m) or O(n + m + m - n), or just O(n)
     Node[] levelStartingPoint(Node node1, Node node2){
         if (node1.getParent() == null || node2.getParent() == null){
@@ -118,29 +194,5 @@ public class FindAncestor {
         }
 
         return new Node[]{node1, node2};
-    }
-
-    // after establising a level 'playing-field' we compare parents and move up the tree with both nodes at the same time
-    // this is now O(n), n = level number
-    public Node findAncestorLevelled(Node node1, Node node2){
-        if (node1.getParent() == null || node2.getParent() == null){
-            System.out.println("Both nodes must have a parent");
-            return null;
-        }
-
-        Node[] nodes = levelStartingPoint(node1, node2);
-
-        while (node1 != node2 && node1.getParent() != null){
-            node1 = node1.getParent();
-            node2 = node2.getParent();
-
-            if (node1 == node2){
-                System.out.println("Found common ancestor: " + node1.getName());
-                return node1;
-            }
-        }
-
-        System.out.println("Could not find common ancestor");
-        return null;
     }
 }

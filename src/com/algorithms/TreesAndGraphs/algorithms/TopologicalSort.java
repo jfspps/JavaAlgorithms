@@ -7,9 +7,12 @@ import java.util.HashMap;
 
 public class TopologicalSort {
 
-    // define the Node structure (use a HashMap to locate nodes by name)
+    // define the Node structure of a connected graph (child node may have more than one dependent, or parent)
     public class Node {
         private ArrayList<Node> children = new ArrayList<>();
+
+        // map holds references to the children's neighbouring nodes (nieces and nephews)
+        // use a HashMap to locate nodes, by name
         private HashMap<String, Node> map = new HashMap<>();
 
         private String name;

@@ -32,8 +32,19 @@ public class Main {
     }
 
     private static void findCommonAncestor() {
+        FindAncestor ancestor = new FindAncestor();
+        FindAncestor.Graph graph = ancestor.buildGraph("A");
 
+        FindAncestor.Node bNode = ancestor.addConnectedNodes(graph, "A", "B");
+        FindAncestor.Node cNode = ancestor.addConnectedNodes(graph, "A", "C");
 
+        FindAncestor.Node bb_Node = ancestor.addConnectedNodes(graph, bNode.getName(), "bb");
+        FindAncestor.Node cc_Node = ancestor.addConnectedNodes(graph, cNode.getName(), "cc");
+        FindAncestor.Node dd_Node = ancestor.addConnectedNodes(graph, cNode.getName(), "dd");
+
+        ancestor.findAncestorOfBinaryTreeLevelled(bb_Node, cc_Node);
+        ancestor.findAncestorOfBinaryTreeLevelled(bNode, cc_Node);
+        ancestor.findAncestorOfBinaryTreeLevelled(dd_Node, cc_Node);
     }
 
     private static void getBuildOrder() {
