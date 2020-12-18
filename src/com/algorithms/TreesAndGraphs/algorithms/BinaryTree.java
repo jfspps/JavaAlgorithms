@@ -1,5 +1,7 @@
 package com.algorithms.TreesAndGraphs.algorithms;
 
+import com.algorithms.StacksAndQueues.algorithms.Queue;
+
 import java.util.LinkedList;
 
 public class BinaryTree<T> {
@@ -64,6 +66,46 @@ public class BinaryTree<T> {
             postOrderTraversal(tree.leftChild);
             postOrderTraversal(tree.rightChild);
             printNode(tree);
+        }
+    }
+
+    public void levelOrderTraversal(BinaryTree<T> root){
+        Queue<BinaryTree<T>> queue = new Queue<>();
+        printNode(root);
+        queue.enqueue(root);
+
+        while (!queue.isEmpty()){
+            root = queue.dequeue();
+
+            if (root.getLeftChild() != null){
+                printNode(root.leftChild);
+                queue.enqueue(root.getLeftChild());
+            }
+
+            if (root.getRightChild() != null){
+                printNode(root.rightChild);
+                queue.enqueue(root.getRightChild());
+            }
+        }
+    }
+
+    public void levelOrderReversedTraversal(BinaryTree<T> root){
+        Queue<BinaryTree<T>> queue = new Queue<>();
+        printNode(root);
+        queue.enqueue(root);
+
+        while (!queue.isEmpty()){
+            root = queue.dequeue();
+
+            if (root.getRightChild() != null){
+                printNode(root.rightChild);
+                queue.enqueue(root.getRightChild());
+            }
+
+            if (root.getLeftChild() != null){
+                printNode(root.leftChild);
+                queue.enqueue(root.getLeftChild());
+            }
         }
     }
 

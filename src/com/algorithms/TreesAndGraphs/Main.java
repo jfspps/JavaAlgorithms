@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args){
-//        binaryTree();
+        binaryTree();
 
 //        demonstrateDepthFirstSearch();
 
@@ -28,7 +28,7 @@ public class Main {
 //        isBuildable();
 //        getBuildOrder();
 
-        findCommonAncestor();
+//        findCommonAncestor();
     }
 
     private static void findCommonAncestor() {
@@ -435,6 +435,15 @@ public class Main {
 
         System.out.println("Post-order traversal:");
         rootNode.postOrderTraversal(rootNode);
+        System.out.println();
+
+        System.out.println("Level-order (left-to-right) traversal:");
+        rootNode.levelOrderTraversal(rootNode);
+        System.out.println();
+
+        System.out.println("Level-order (right-to-left) traversal:");
+        rootNode.levelOrderReversedTraversal(rootNode);
+        System.out.println();
     }
 
     private static BinaryTree<Integer> manualBST() {
